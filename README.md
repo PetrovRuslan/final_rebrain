@@ -8,9 +8,11 @@ wget https://get.helm.sh/helm-v3.16.2-linux-amd64.tar.gz
 
 tar -xvzf helm-v3.16.2-linux-amd64.tar.gz
 
-mv linux-amd64/helm /usr/local/bin/helm
+sudo mv linux-amd64/helm /usr/local/bin/helm
 
 ### 0.2 Install nfs-subdir-external-provisioner
+
+sudo apt install nfs-common -y <!-- на всех нодах>
 
 <!-- $ helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
 $ helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner \
@@ -27,6 +29,8 @@ kubectl create ns nfs-provisioner
 
 kubectl apply -f deploy/rbac.yaml
 
+nano deploy/deployment.yaml
+
 ``` 
     spec:
       serviceAccountName: nfs-client-provisioner
@@ -40,19 +44,23 @@ kubectl apply -f deploy/rbac.yaml
             - name: PROVISIONER_NAME
               value: k8s-sigs.io/nfs-subdir-external-provisioner
             - name: NFS_SERVER
-              value: 10.114.0.5
+              value: 10.129.0.12
             - name: NFS_PATH
-              value: /opt/nfs/kubernetes
+              value: /opt/nfs/
       volumes:
         - name: nfs-client-root
           nfs:
-            server: 10.114.0.5
-            path: /opt/nfs/kubernetes
+            server: 10.129.0.12
+            path: /opt/nfs/
 ```
 
- kubectl apply -f deploy/deployment.yaml
+kubectl apply -f deploy/deployment.yaml
 
-## 2. MYSQL
+kubectl apply -f deploy/class.yaml
+
+kubectl get deploy -n=nfs-provisioner
+
+## 1. MYSQL
 
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo update
