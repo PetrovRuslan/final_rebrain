@@ -60,6 +60,20 @@ kubectl apply -f deploy/class.yaml
 
 kubectl get deploy -n=nfs-provisioner
 
+```
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: mysql-pv-claim
+spec:
+  storageClassName: nfs-client
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Mi
+```
+
 ## 1. MYSQL
 
 <!-- Пример https://kubernetes.io/docs/tasks/run-application/run-single-instance-stateful-application/ -->

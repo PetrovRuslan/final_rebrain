@@ -61,10 +61,12 @@ spec:
     http:
       paths:
       - path: /
-        service:
-          name: nginx
-          port:
-            number: 80
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx
+            port:
+              number: 80
   # Указываем настройки для tls — для какого хоста нужен tls и куда сохранить полученный сертификат
   tls:
   - hosts:
