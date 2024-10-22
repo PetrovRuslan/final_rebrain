@@ -3,5 +3,5 @@ secretGenerator:
   literals:
   - password=qwerty
 resources:
-  - ./deploy/mysql-deployment.yaml
-  - ./deploy/wordpress-deployment.yaml
+  - ./mysql-manifests/mysql-deployment.yaml
+  - ./wordpess-manifests/wordpress-deployment.yaml
