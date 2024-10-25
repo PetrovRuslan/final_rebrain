@@ -991,9 +991,10 @@ grafana:
     ## Hostnames.
     ## Must be provided if Ingress is enable.
     ##
-    hosts:
+    tls:
+    - hosts:
       - grafana.my-sandbox.ru
-    hosts: []
+      secretName: grafana-sandboxru-dev-kis-im-cert
 
     ## Path for grafana ingress
     path: /
