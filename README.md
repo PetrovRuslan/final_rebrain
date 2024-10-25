@@ -134,9 +134,6 @@ metadata:
   namespace: default
   annotations:
     nginx.ingress.kubernetes.io/enable-cors: "true"
-    nginx.ingress.kubernetes.io/auth-type: "basic"
-    nginx.ingress.kubernetes.io/auth-secret: "basic-auth"
-    nginx.ingress.kubernetes.io/auth-secret-type: "auth-file"
     # Указываем, каким образом выписывать сертификат
     cert-manager.io/cluster-issuer: "letsencrypt"
 spec:
