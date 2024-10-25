@@ -78,17 +78,27 @@ spec:
 
 <!-- Пример https://kubernetes.io/docs/tasks/run-application/run-single-instance-stateful-application/ -->
 
-helm repo add bitnami https://charts.bitnami.com/bitnami
+git clone https://github.com/PetrovRuslan/final_rebrain.git
+
+cd final_rebrain
+
+git checkout feature/test_pvc
+
+cd charts
+
+kubectl apply -k ./
+
+<!-- helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo update
 helm pull bitnami/mysql
 tar xvf mysql-11.1.19.tgz
 cd mysql
-nano values.yaml
+nano values.yaml -->
 <!-- в values отключить pvc enabled: false-->
 
-kubectl create ns mysql-ns
+<!-- kubectl create ns mysql-ns
 export MYSQL_ROOT_PASSWORD=strong-password
-helm install --set mysqlRootPassword=$MYSQL_ROOT_PASSWORD --set volumePermissions.enabled=false -n mysql-ns mysql-release01 ./
+helm install --set mysqlRootPassword=$MYSQL_ROOT_PASSWORD --set volumePermissions.enabled=false -n mysql-ns mysql-release01 ./ -->
 <!-- helm repo add mysql-operator https://mysql.github.io/mysql-operator/
 helm repo update -->
 
@@ -114,11 +124,13 @@ spec:
          class: nginx
 ```
 
+kubectl apply -f clusterissuer.yaml
+
 ```
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: back
+  name: wordpress-ingress
   namespace: default
   annotations:
     nginx.ingress.kubernetes.io/enable-cors: "true"
@@ -135,13 +147,13 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: nginx
+          serviceName: wordpress
           servicePort: 80
   # Указываем настройки для tls — для какого хоста нужен tls и куда сохранить полученный сертификат
   tls:
   - hosts:
     - my-sandbox.ru
-    secretName: back-dev-kis-im-cert
+    secretName: my-sandboxru-dev-kis-im-cert
 ```
 
 ### 2.2 
@@ -150,3 +162,8 @@ spec:
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.11.2/deploy/static/provider/cloud/deploy.yaml
 
 kubectl -n ingress-nginx get deploy 
+
+### 3. Prometheus 
+
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
