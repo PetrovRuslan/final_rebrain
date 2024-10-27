@@ -162,5 +162,22 @@ kubectl -n ingress-nginx get deploy
 
 ### 3. Prometheus 
 
-helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+<!-- helm repo add prometheus-community https://prometheus-community.github.io/helm-charts -->
+<!-- helm repo update -->
+
+kubectl create ns monitoring
+
+helm -n monitoring upgrade --install prometheus-stack -f values.yaml ./
+
+### 4. EFK
+
+helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo update
+
+helm pull elastic/elasticsearch
+helm pull elastic/kibana
+helm pull bitnami/fluent-bit
+
+tar xvf elasticsearch-8.5.1.tgz && rm -rf elasticsearch-8.5.1.tgz
+tar xvf kibana-8.5.1.tgz && rm -rf kibana-8.5.1.tgz
+tar xvf fluent-bit-2.3.21.tgz && rm -rf fluent-bit-2.3.21.tgz
