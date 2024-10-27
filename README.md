@@ -171,7 +171,7 @@ helm -n monitoring upgrade --install prometheus-stack -f values.yaml ./
 
 ### 4. EFK
 
-helm repo add bitnami https://charts.bitnami.com/bitnami
+<!-- helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo update
 
 helm pull elastic/elasticsearch
@@ -180,4 +180,8 @@ helm pull bitnami/fluent-bit
 
 tar xvf elasticsearch-8.5.1.tgz && rm -rf elasticsearch-8.5.1.tgz
 tar xvf kibana-8.5.1.tgz && rm -rf kibana-8.5.1.tgz
-tar xvf fluent-bit-2.3.21.tgz && rm -rf fluent-bit-2.3.21.tgz
+tar xvf fluent-bit-2.3.21.tgz && rm -rf fluent-bit-2.3.21.tgz -->
+
+kubectl create ns logs
+
+helm -n logs upgrade --install elastic -f values.yaml ./elasticsearch
