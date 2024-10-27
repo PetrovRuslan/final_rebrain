@@ -184,4 +184,4 @@ tar xvf fluent-bit-2.3.21.tgz && rm -rf fluent-bit-2.3.21.tgz -->
 
 kubectl create ns logs
 
-helm -n logs upgrade --install elastic -f values.yaml ./elasticsearch
+helm -n logs upgrade --install elastic -f values.yaml .
