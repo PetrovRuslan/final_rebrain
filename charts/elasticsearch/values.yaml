@@ -52,7 +52,7 @@ secretMounts: []
 #    path: /usr/share/elasticsearch/config/certs
 #    defaultMode: 0755
 
-image: "docker.elastic.co/elasticsearch/elasticsearch"
+image: "petrovru/elasticsearch"
 imageTag: "7.10.0"
 imagePullPolicy: "IfNotPresent"
 
