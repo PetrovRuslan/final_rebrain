@@ -122,11 +122,11 @@ ingress:
     cert-manager.io/cluster-issuer: "letsencrypt"
   path: /
   hosts:
-    - my-sandboxru-dev-kis-im-cert
+    - kibana.my-sandbox.ru
   tls:
    - secretName: kibana-sandboxru-dev-kis-im-cert
      hosts:
-       - my-sandboxru-dev-kis-im-cert
+       - kibana.my-sandbox.ru
 
 readinessProbe:
   failureThreshold: 3
