@@ -86,6 +86,22 @@ git checkout feature/test_pvc
 
 cd charts
 
+wget https://github.com/mozilla/sops/releases/download/v3.7.1/sops-v3.7.1.linux
+
+mv sops-v3.7.1.linux /usr/local/bin/sops
+
+chmod +x /usr/local/bin/sops
+
+sops -v
+
+gpg --gen-key
+
+gpg -k
+
+sops -e --pgp adkfjaldfja;ldkfjalsjf
+
+helm plugin install https://github.com/jkroepke/helm-secrets
+
 kubectl apply -k ./
 
 <!-- helm repo add bitnami https://charts.bitnami.com/bitnami
@@ -176,7 +192,7 @@ helm repo update
 
 helm pull elastic/elasticsearch
 helm pull elastic/kibana
-helm pull bitnami/fluent-bit
+helm pull stable/fluent-bit
 
 tar xvf elasticsearch-8.5.1.tgz && rm -rf elasticsearch-8.5.1.tgz
 tar xvf kibana-8.5.1.tgz && rm -rf kibana-8.5.1.tgz
@@ -185,3 +201,5 @@ tar xvf fluent-bit-2.3.21.tgz && rm -rf fluent-bit-2.3.21.tgz -->
 kubectl create ns logs
 
 helm -n logs upgrade --install elastic -f values.yaml .
+
+helm -n logs upgrade --install fluent-bit -f values.yaml .
