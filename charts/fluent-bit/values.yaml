@@ -83,7 +83,6 @@ backend:
     tls_ca: ""
     # TLS debugging levels = 1-4
     tls_debug: 1
-
   ##
   ## Ref: http://fluentbit.io/documentation/current/output/http.html
   ##
