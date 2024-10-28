@@ -1,8 +1,7 @@
-# Default
+# OSS
 
 This example deploy a 3 nodes Elasticsearch 7.10.0 cluster using
-[default values][].
-
+[Elasticsearch OSS][] version.
 
 ## Usage
 
@@ -11,15 +10,14 @@ This example deploy a 3 nodes Elasticsearch 7.10.0 cluster using
 * You can now setup a port forward to query Elasticsearch API:
 
   ```
-  kubectl port-forward svc/elasticsearch-master 9200
+  kubectl port-forward svc/oss-master 9200
   curl localhost:9200/_cat/indices
   ```
-
 
 ## Testing
 
 You can also run [goss integration tests][] using `make test`
 
 
-[goss integration tests]: https://github.com/elastic/helm-charts/tree/7.10/elasticsearch/examples/default/test/goss.yaml
-[default values]: https://github.com/elastic/helm-charts/tree/7.10/elasticsearch/values.yaml
+[elasticsearch oss]: https://www.elastic.co/downloads/elasticsearch-oss
+[goss integration tests]: https://github.com/elastic/helm-charts/tree/7.10/elasticsearch/examples/oss/test/goss.yaml

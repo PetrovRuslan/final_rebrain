@@ -1,10 +1,7 @@
 default: test
 include ../../../helpers/examples.mk
 
-RELEASE := elasticsearch
-
-template:
-	helm template --values ./values.yaml ../../
+RELEASE := helm-es-oss
 
 install:
 	helm upgrade --wait --timeout=900s --install $(RELEASE) --values ./values.yaml ../../

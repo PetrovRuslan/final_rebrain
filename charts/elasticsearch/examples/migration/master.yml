@@ -1,4 +1,5 @@
 ---
+
 # Temporarily set to 3 so we can scale up/down the old a new cluster
 # one at a time whilst always keeping 3 masters running
 replicas: 1
@@ -13,10 +14,12 @@ clusterName: "elasticsearch"
 nodeGroup: "master"
 
 roles:
-  - master
+  master: "true"
+  ingest: "false"
+  data: "false"
 
 volumeClaimTemplate:
-  accessModes: ["ReadWriteOnce"]
+  accessModes: [ "ReadWriteOnce" ]
   storageClassName: "standard"
   resources:
     requests:
