@@ -92,10 +92,10 @@ resources:
     cpu: "100m"
     memory: "1Gi"
 
-initResources: {}
+initResources:
   limits:
     cpu: "25m"
-    # memory: "128Mi"
+    memory: "128Mi"
   requests:
     cpu: "25m"
     memory: "128Mi"
