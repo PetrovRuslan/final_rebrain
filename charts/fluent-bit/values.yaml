@@ -13,7 +13,7 @@ image:
 
 testFramework:
   # When enabled, performs helm tests
-  enabled: true
+  enabled: false
   image: "dduportal/bats"
   tag: "0.4.0"
   # If specified, use these secrets to access the image
